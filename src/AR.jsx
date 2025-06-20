@@ -5,13 +5,11 @@ function AR() {
     let [placementMode, setPlacementMode] = useState(true);
     return (
       <>
-      <BrowserCompatibility fallback={<div>Sorry!</div>} />
-
         <ZapparCanvas>
           <ZapparCamera />
           <InstantTracker placementMode={placementMode} placementCameraOffset={[0, 0, -5]}>
             <mesh>
-              <sphereBufferGeometry />
+              <sphereGeometry args={[1, 32, 32]} />
               <meshStandardMaterial color="hotpink" />
             </mesh>
           </InstantTracker>
