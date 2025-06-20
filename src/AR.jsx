@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { ZapparCamera, InstantTracker, ZapparCanvas } from '@zappar/zappar-react-three-fiber';
+import { ZapparCamera, InstantTracker, ZapparCanvas, BrowserCompatibility } from '@zappar/zappar-react-three-fiber';
 
 function AR() {
     let [placementMode, setPlacementMode] = useState(true);
     return (
       <>
+      <BrowserCompatibility fallback={<div>Sorry!</div>} />
+
         <ZapparCanvas>
           <ZapparCamera />
           <InstantTracker placementMode={placementMode} placementCameraOffset={[0, 0, -5]}>
