@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { ZapparCamera, InstantTracker, ZapparCanvas, BrowserCompatibility } from '@zappar/zappar-react-three-fiber';
+import { useThree } from '@react-three/fiber';
 
 function AR() {
     let [placementMode, setPlacementMode] = useState(true);
+    const { gl } = useThree();
+
+    useEffect(() => {
+    gl.setSize(window.innerWidth, window.innerHeight);
+  }, [gl]);
+
     return (
       <>
-        <ZapparCanvas>
+        <ZapparCanvas  >
           <ZapparCamera />
           <InstantTracker placementMode={placementMode} placementCameraOffset={[0, 0, -5]}>
             <mesh>
               <sphereGeometry args={[1, 32, 32]} />
-              <meshStandardMaterial color="hotpink" />
+              <meshStandardMaterial color="white" />
             </mesh>
           </InstantTracker>
           <directionalLight position={[2.5, 8, 5]} intensity={1.5} />
