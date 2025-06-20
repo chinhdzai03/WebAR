@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ZapparCamera, InstantTracker, ZapparCanvas, BrowserCompatibility } from '@zappar/zappar-react-three-fiber';
 import { useFrame, useThree } from '@react-three/fiber';
+import Cube from './Cube';
 
 function ResizeGLCanvas() {
   const { gl } = useThree();
@@ -16,24 +17,17 @@ function AR() {
     const [scale, setScale] = useState(1);
     const [rotationY, setRotationY] = useState(0); 
 
-    const meshRef = useRef();
-
-    useFrame(() => {
-        if (meshRef.current) {
-        meshRef.current.rotation.y = rotationY;
-        meshRef.current.scale.set(scale, scale, scale);
-            }
-    });
 
     return (
       <>
         <ZapparCanvas  >
           <ZapparCamera />
           <InstantTracker placementMode={placementMode} placementCameraOffset={[0, 0, -5]}>
-            <mesh ref={meshRef}>
+            {/* <mesh ref={meshRef}>
               <boxGeometry args={[1, 1, 1]} />
               <meshStandardMaterial color="white" />
-            </mesh>
+            </mesh> */}
+            <Cube scale={scale} rotationY={rotationY}/>
           </InstantTracker>
           <directionalLight position={[2.5, 8, 5]} intensity={1.5} />
           <ResizeGLCanvas />
