@@ -17,7 +17,6 @@ function AR() {
     const [scale, setScale] = useState(1);
     const [rotationY, setRotationY] = useState(0); 
 
-
     return (
       <>
         <ZapparCanvas  >
@@ -32,6 +31,23 @@ function AR() {
           <directionalLight position={[2.5, 8, 5]} intensity={1.5} />
           <ResizeGLCanvas />
         </ZapparCanvas>
+
+        <div
+          id="zappar-placement-ui"
+          onClick={() => {
+            setPlacementMode((currentPlacementMode) => !currentPlacementMode);
+          }}
+          onKeyDown={() => {
+            setPlacementMode((currentPlacementMode) => !currentPlacementMode);
+          }}
+          role="button"
+          tabIndex={0}
+        >
+          Tap here to
+          {placementMode ? ' place ' : ' pick up '}
+          the object
+        </div>
+        
         <div style={{
             position: 'absolute',
             bottom: '100px',
@@ -69,21 +85,7 @@ function AR() {
             </div>
         </div>
       
-        <div
-          id="zappar-placement-ui"
-          onClick={() => {
-            setPlacementMode((currentPlacementMode) => !currentPlacementMode);
-          }}
-          onKeyDown={() => {
-            setPlacementMode((currentPlacementMode) => !currentPlacementMode);
-          }}
-          role="button"
-          tabIndex={0}
-        >
-          Tap here to
-          {placementMode ? ' place ' : ' pick up '}
-          the object
-        </div>
+        
       </>
     );
 }
