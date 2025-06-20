@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ZapparCamera, InstantTracker, ZapparCanvas, BrowserCompatibility } from '@zappar/zappar-react-three-fiber';
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
 function ResizeGLCanvas() {
   const { gl } = useThree();
@@ -18,7 +18,7 @@ function AR() {
 
     const meshRef = useRef();
 
-     useFrame(() => {
+    useFrame(() => {
         if (meshRef.current) {
         meshRef.current.rotation.y = rotationY;
         meshRef.current.scale.set(scale, scale, scale);
