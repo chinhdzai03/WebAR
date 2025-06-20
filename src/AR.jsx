@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { ZapparCamera, InstantTracker, ZapparCanvas, BrowserCompatibility } from '@zappar/zappar-react-three-fiber';
 import { useThree } from '@react-three/fiber';
 
-function AR() {
-    let [placementMode, setPlacementMode] = useState(true);
-    const { gl } = useThree();
+function ResizeGLCanvas() {
+  const { gl } = useThree();
 
-    useEffect(() => {
+  useEffect(() => {
     gl.setSize(window.innerWidth, window.innerHeight);
   }, [gl]);
 
+  return null;
+}
+function AR() {
+    let [placementMode, setPlacementMode] = useState(true);
+    
     return (
       <>
         <ZapparCanvas  >
@@ -21,7 +25,7 @@ function AR() {
             </mesh>
           </InstantTracker>
           <directionalLight position={[2.5, 8, 5]} intensity={1.5} />
-
+          <ResizeGLCanvas />
         </ZapparCanvas>
         <div
           id="zappar-placement-ui"
